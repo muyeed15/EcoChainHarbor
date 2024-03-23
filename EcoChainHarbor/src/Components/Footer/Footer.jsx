@@ -1,7 +1,10 @@
-const Footer = () => {
+import PropTypes from 'prop-types';
+
+const Footer = ({display}) => {
+
   return (
     <div>
-      <footer className="footer absolute h-[178px] bottom-0 p-10 bg-slate-500 text-neutral-content">
+      <footer className={`${display} bottom-0 footer footer-center h-[178px] border-t-2  p-10 bg-inherit text-neutral-content`}>
         <aside>
           <svg
             width="50"
@@ -63,4 +66,14 @@ const Footer = () => {
   );
 };
 
+
+
+
+
+Footer.propTypes = {
+  display:PropTypes.string
+};
+
+
 export default Footer;
+

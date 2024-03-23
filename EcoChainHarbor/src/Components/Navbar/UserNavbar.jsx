@@ -1,7 +1,56 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink, useLocation, useParams } from "react-router-dom";
 import { GiFarmer } from "react-icons/gi";
+import { useState } from "react";
 
 const UserNavbar = () => {
+  const path = useLocation()
+  console.log(path.pathname)
+  const user =useParams()
+  console.log(user.userId)
+  const [cartVisible, setCartVisible] = useState(false);
+
+  const cartItems = [
+    {
+      id: 1,
+      name: "Neil Sims",
+      email: "email@flowbite.com",
+      imageSrc: "/docs/images/people/profile-picture-1.jpg",
+      amount: 320,
+    },
+    {
+      id: 2,
+      name: "Bonnie Green",
+      email: "email@flowbite.com",
+      imageSrc: "/docs/images/people/profile-picture-3.jpg",
+      amount: 3467,
+    },
+    {
+      id: 3,
+      name: "Michael Gough",
+      email: "email@flowbite.com",
+      imageSrc: "/docs/images/people/profile-picture-2.jpg",
+      amount: 67,
+    },
+    {
+      id: 4,
+      name: "Thomas Lean",
+      email: "email@flowbite.com",
+      imageSrc: "/docs/images/people/profile-picture-5.jpg",
+      amount: 2367,
+    },
+    {
+      id: 5,
+      name: "Lana Byrd",
+      email: "email@flowbite.com",
+      imageSrc: "/docs/images/people/profile-picture-4.jpg",
+      amount: 367,
+    },
+  ];
+
+  const handleCart = () => {
+    setCartVisible(!cartVisible);
+  };
+
   return (
     <div>
       <div className="navbar shadow-xl flex justify-between">
@@ -12,37 +61,6 @@ const UserNavbar = () => {
         </button>
 
         <div className="flex-none">
-          {/* login button */}
-          {/* <div className="navbar-end">
-            <button className="">
-              <Link
-                to="/login"
-                class="relative inline-flex items-center justify-center p-4 px-6 py-3 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out border-2 border-purple-500 rounded-full shadow-md group"
-              >
-                <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-purple-500 group-hover:translate-x-0 ease">
-                  <svg
-                    className="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M14 5l7 7m0 0l-7 7m7-7H3"
-                    ></path>
-                  </svg>
-                </span>
-                <span className="absolute flex items-center justify-center w-full h-full text-purple-500 transition-all duration-300 transform group-hover:translate-x-full ease">
-                  Login
-                </span>
-                <span className="relative invisible">Login</span>
-              </Link>
-            </button>
-          </div> */}
-
           {/* notification  */}
           <button className="btn btn-ghost btn-circle">
             <div className="indicator">
@@ -64,11 +82,12 @@ const UserNavbar = () => {
             </div>
           </button>
 
-          <div className="dropdown dropdown-end">
+          <div className="relative dropdown dropdown-end">
             {/* cart button */}
             <div
               tabIndex={0}
               role="button"
+              onClick={handleCart}
               className="btn btn-ghost btn-circle"
             >
               <div className="indicator">
@@ -89,20 +108,35 @@ const UserNavbar = () => {
                 <span className="badge badge-sm indicator-item">8</span>
               </div>
             </div>
-            <div
-              tabIndex={0}
-              className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow"
-            >
-              <div className="card-body">
-                <span className="font-bold text-lg">8 Items</span>
-                <span className="text-info">Subtotal: $999</span>
-                <div className="card-actions">
-                  <button className="btn btn-primary btn-block">
-                    View cart
-                  </button>
-                </div>
-              </div>
-            </div>
+            {/* cart items */}
+            {cartVisible && (
+              <ul className="absolute -inset-x-56 w-56  border-2 p-4 bg-slate-500 rounded-2xl shadow-lg shadow-emerald-300  max-w-md divide-y divide-gray-200 dark:divide-gray-700">
+                {cartItems.map((item) => (
+                  <li key={item.id} className="py-3 sm:py-4">
+                    <div className="flex items-center space-x-4 rtl:space-x-reverse">
+                      <div className="flex-shrink-0">
+                        <img
+                          className="w-8 h-8 rounded-full"
+                          src={item.imageSrc}
+                          alt={item.name}
+                        />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
+                          {item.name}
+                        </p>
+                        <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+                          {item.email}
+                        </p>
+                      </div>
+                      <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                        ${item.amount}
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
           {/* Login information */}
           <div className="dropdown dropdown-end">
@@ -120,16 +154,24 @@ const UserNavbar = () => {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <a className="justify-between">
+                <Link
+                // onClick={}
+                  to={`/user/${user.userId}`}
+                >
                   Profile
                   <span className="badge">New</span>
-                </a>
+                </Link>
               </li>
               <li>
-                <a>Settings</a>
+                <Link
+                  to={"/user"}
+                >
+                  Dashboard
+                </Link>
+                {/* <Navli to='/user'>Dashboard</Navli> */}
               </li>
               <li>
-                <a>Logout</a>
+                <Link to="/">Logout</Link>
               </li>
             </ul>
           </div>
