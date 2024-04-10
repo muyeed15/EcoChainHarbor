@@ -22,7 +22,6 @@
     }
 </style>
 
-
 <?php
 // Database configuration
 $servername = "localhost";
