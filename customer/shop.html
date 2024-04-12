@@ -73,13 +73,17 @@
                         <a href="shop.html" class="nav-item nav-link active">Shop</a>
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
                     </div>
-                    <div class="d-flex m-3 me-0">
-                        <a href="#" class="position-relative me-4 my-auto">
-                            <i class="fa fa-shopping-bag fa-2x"></i>
-                        </a>
-                        <a href="#" class="my-auto">
-                            <i class="fas fa-user fa-2x"></i>
-                        </a>
+                    <div class="collapse navbar-collapse bg-white justify-content-end" id="navbarCollapse">
+                        <div class="d-flex m-3 me-0">
+                            <!-- Added My Account link -->
+                            <a href="account.html" class="me-4 my-auto">
+                                <i class="fas fa-user fa-2x"></i>
+                            </a>
+                            <!-- Added Logout option -->
+                            <a href="../login.html" class="my-auto" id="logoutBtn">
+                                <i class="fas fa-sign-out-alt fa-2x"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </nav>

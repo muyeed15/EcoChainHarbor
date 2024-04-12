@@ -1,27 +1,17 @@
 <!DOCTYPE html>
-<!-- Created By CodingLab - www.codinglabweb.com -->
 <html lang="en" dir="ltr">
 
 <head>
     <meta charset="UTF-8">
-    <title> Responsive Registration Form | CodingLab </title>
+    <title>Responsive Registration Form | CodingLab</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px;
-            background: linear-gradient(135deg, #71b7e6, #9b59b6);
         }
 
         .container {
@@ -47,7 +37,7 @@
             height: 3px;
             width: 30px;
             border-radius: 5px;
-            background: linear-gradient(135deg, #71b7e6, #9b59b6);
+            background: linear-gradient(135deg, #556341, #556341);
         }
 
         .content form .user-details {
@@ -69,8 +59,8 @@
         }
 
         .user-details .input-box input {
-            height: 45px;
-            width: 100%;
+            height: 40px;
+            width: 635px;
             outline: none;
             font-size: 16px;
             border-radius: 5px;
@@ -82,51 +72,55 @@
 
         .user-details .input-box input:focus,
         .user-details .input-box input:valid {
-            border-color: #9b59b6;
+            border-color: #556341;
         }
 
-        form .gender-details .gender-title {
-            font-size: 20px;
-            font-weight: 500;
-        }
-
-        form .category {
-            display: flex;
-            width: 80%;
-            margin: 14px 0;
-            justify-content: space-between;
-        }
-
-        form .category label {
-            display: flex;
-            align-items: center;
+        .category label {
+            position: relative;
+            display: inline-block;
             cursor: pointer;
+            margin-right: 15px;
         }
 
-        form .category label .dot {
-            height: 18px;
-            width: 18px;
-            border-radius: 50%;
-            margin-right: 10px;
-            background: #d9d9d9;
-            border: 5px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        #dot-1:checked~.category label .one,
-        #dot-2:checked~.category label .two,
-        #dot-3:checked~.category label .three {
-            background: #9b59b6;
-            border-color: #d9d9d9;
-        }
-
-        form input[type="radio"] {
+        .category input[type="radio"] {
             display: none;
+        }
+
+        .category .dot {
+            height: 15px;
+            width: 15px;
+            background-color: #ccc;
+            border-radius: 50%;
+            display: inline-block;
+            position: relative;
+            margin-right: 5px;
+        }
+
+        .category input[type="radio"]:checked+.dot::after {
+            content: "";
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            height: 10px;
+            width: 10px;
+            border-radius: 50%;
+            background-color: #556341;
+        }
+
+        .category .type {
+            font-size: 16px;
+            color: #555;
+        }
+
+        @media (max-width: 584px) {
+            .category {
+                flex-direction: column;
+            }
         }
 
         form .button {
             height: 45px;
-            margin: 35px 0
+            margin: 35px 0;
         }
 
         form .button input {
@@ -140,12 +134,169 @@
             letter-spacing: 1px;
             cursor: pointer;
             transition: all 0.3s ease;
-            background: linear-gradient(135deg, #71b7e6, #9b59b6);
+            background: linear-gradient(135deg, #556341, #556341);
         }
 
         form .button input:hover {
-            /* transform: scale(0.99); */
-            background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+            background: linear-gradient(-135deg, #556341, #556341);
+        }
+
+        .background {
+            background-image: url('img/Login.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .brand {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #fff;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .slogan {
+            position: absolute;
+            top: 50px;
+            left: 20px;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        .wrapper {
+            width: 700px;
+            background: rgba(255, 255, 255, 1);
+            border-radius: 15px;
+            box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .wrapper .title {
+            font-size: 35px;
+            font-weight: 600;
+            text-align: center;
+            line-height: 100px;
+            color: #fff;
+            user-select: none;
+            border-radius: 15px 15px 0 0;
+            background: linear-gradient(-135deg, #556341, #556341);
+        }
+
+        .wrapper form {
+            padding: 10px 30px 50px 30px;
+        }
+
+        .wrapper form .field {
+            height: 50px;
+            width: 100%;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .wrapper form .field input {
+            height: 100%;
+            width: 100%;
+            outline: none;
+            font-size: 17px;
+            padding-left: 20px;
+            border: 1px solid lightgrey;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .wrapper form .field input:focus,
+        form .field input:valid {
+            border-color: #556341;
+        }
+
+        .wrapper form .field label {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            color: #999999;
+            font-weight: 400;
+            font-size: 17px;
+            pointer-events: none;
+            transform: translateY(-50%);
+            transition: all 0.3s ease;
+        }
+
+        form .field input:focus~label,
+        form .field input:valid~label {
+            top: 0%;
+            font-size: 16px;
+            color: #556341;
+            background: #fff;
+            transform: translateY(-50%);
+        }
+
+        form .content {
+            display: flex;
+            width: 100%;
+            height: 50px;
+            font-size: 16px;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        form .content .checkbox {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        form .content input {
+            width: 15px;
+            height: 15px;
+            background: red;
+        }
+
+        form .content label {
+            color: #262626;
+            user-select: none;
+            padding-left: 5px;
+        }
+
+        form .content .pass-link {
+            color: "";
+        }
+
+        form .field input[type="submit"] {
+            color: #fff;
+            border: none;
+            padding-left: 0;
+            margin-top: -10px;
+            font-size: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            background: linear-gradient(-135deg, #556341, #556341);
+            transition: all 0.3s ease;
+        }
+
+        form .field input[type="submit"]:active {
+            transform: scale(0.95);
+        }
+
+        form .signup-link {
+            color: #262626;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        form .pass-link a,
+        form .signup-link a {
+            color: #556341;
+            text-decoration: none;
+        }
+
+        form .pass-link a:hover,
+        form .signup-link a:hover {
+            text-decoration: underline;
         }
 
         @media(max-width: 584px) {
@@ -178,67 +329,79 @@
             }
         }
     </style>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Registration</title>
+    </head>
 
 <body>
-    <div class="container">
-        <div class="title">Registration</div>
-        <div class="content">
-            <form action="#">
+    <div class="background">
+        <div class="brand">EcoChainHarbor</div>
+        <div class="slogan">Empowering Sustainable Futures</div>
+        <div class="wrapper">
+            <div class="title">Registration</div>
+            <form action="signup.php" method="post">
                 <div class="user-details">
                     <div class="input-box">
                         <span class="details">Full Name</span>
-                        <input type="text" placeholder="Enter your name" required>
+                        <input type="text" name="name" placeholder="Enter your name" required>
                     </div>
                     <div class="input-box">
-                        <span class="details">Username</span>
-                        <input type="text" placeholder="Enter your username" required>
+                        <span class="details">UserID</span>
+                        <input type="text" name="userID" placeholder="Enter your username"
+                            value="<?php echo $userID; ?>" required>
                     </div>
                     <div class="input-box">
                         <span class="details">Email</span>
-                        <input type="text" placeholder="Enter your email" required>
+                        <input type="email" name="email" placeholder="Enter your email" required>
                     </div>
                     <div class="input-box">
                         <span class="details">Phone Number</span>
-                        <input type="text" placeholder="Enter your number" required>
+                        <input type="text" name="phone" placeholder="Enter your number" required>
                     </div>
                     <div class="input-box">
                         <span class="details">Password</span>
-                        <input type="text" placeholder="Enter your password" required>
+                        <input type="password" name="password" placeholder="Enter your password" required>
                     </div>
                     <div class="input-box">
                         <span class="details">Confirm Password</span>
-                        <input type="text" placeholder="Confirm your password" required>
+                        <input type="password" name="confirm_password" placeholder="Confirm your password" required>
                     </div>
                 </div>
-                <div class="gender-details">
-                    <input type="radio" name="gender" id="dot-1">
-                    <input type="radio" name="gender" id="dot-2">
-                    <input type="radio" name="gender" id="dot-3">
-                    <span class="gender-title">Gender</span>
+                <div class="type-details">
+                    <span class="type-title">User Type</span>
                     <div class="category">
                         <label for="dot-1">
+                            <input type="radio" id="dot-1" name="type" value="Customer" required>
                             <span class="dot one"></span>
-                            <span class="gender">Male</span>
+                            <span class="type">Customer</span>
                         </label>
                         <label for="dot-2">
+                            <input type="radio" id="dot-2" name="type" value="Vendor" required>
                             <span class="dot two"></span>
-                            <span class="gender">Female</span>
+                            <span class="type">Vendor</span>
                         </label>
                         <label for="dot-3">
+                            <input type="radio" id="dot-3" name="type" value="Farmer" required>
                             <span class="dot three"></span>
-                            <span class="gender">Prefer not to say</span>
+                            <span class="type">Farmer</span>
                         </label>
                     </div>
                 </div>
                 <div class="button">
                     <input type="submit" value="Register">
                 </div>
+                <div class="login-link">
+                    <a href="login.html">Back to Login</a>
+                </div>
             </form>
         </div>
     </div>
-
 </body>
 
 </html>

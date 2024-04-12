@@ -1,16 +1,7 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "ecochainharbor";
+session_start();
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include 'db_connection.php';
 
 $userID = $_POST['userID'];
 $password = $_POST['password'];
@@ -19,11 +10,20 @@ $sql = "SELECT * FROM USER_T WHERE userID='$userID' AND password_s='$password'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    // Login successful, redirect to shop.html
-    header("Location: shop.html");
+    $row = $result->fetch_assoc();
+    if ($row['type'] == 'Customer') {
+        header("Location: customer/shop.html");
+    }
+    else if ($row['type'] == 'Vendor') {
+        header("Location: customer/shop.html");
+    }
+    else if ($row['type'] == 'Farmer') {
+        header("Location: customer/shop.html");
+    }
+
     exit();
 } else {
-    echo "Invalid User ID or password";
+    echo "<script>alert('Invalid User ID or password'); window.history.back();</script>";
 }
 
 $conn->close();

@@ -1,51 +1,39 @@
 <style>
-    /* Additional CSS styles */
     .fruite-item {
-        width: 300px; /* Adjust the width as needed */
+        width: 300px;
         margin: 10px;
     }
 
     .fruite-img img {
-        max-width: 100%; /* Ensure the image doesn't overflow the container */
+        max-width: 100%;
         height: auto;
-        /* Add max-height to limit the height of the image */
-        max-height: 300px; /* Adjust the max height as needed */
+        max-height: 300px;
     }
 
     .fruite-item .text-white {
-        font-size: 12px; /* Adjust font size */
+        font-size: 12px;
         padding: 5px;
     }
 
     .fruite-item .p-4 {
-        font-size: 14px; /* Adjust font size */
+        font-size: 14px;
     }
 </style>
 
 <?php
-// Database configuration
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "ecochainharbor";
+include '../db_connection.php';
 
+$connection = mysqli_connect($servername, $username, $password, $dbname);
 
-// Create connection
-$connection = mysqli_connect($servername, $username, $password, $database);
-
-// Check connection
 if (!$connection) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// Query to select all products
 $query = "SELECT * FROM PRODUCT_T";
 $result = mysqli_query($connection, $query);
 
-// Check if there are any products
 if(mysqli_num_rows($result) > 0) {
-    // Output products
-// Output products
+
 while($row = mysqli_fetch_assoc($result)) {
     ?>
     <div class="rounded position-relative fruite-item">
@@ -62,13 +50,11 @@ while($row = mysqli_fetch_assoc($result)) {
         </div>
     </div>
     <?php
-
 }
+
 } else {
-    // If no products found, display a message
     echo "No products found.";
 }
 
-// Close the database connection
 mysqli_close($connection);
 ?>
