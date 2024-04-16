@@ -299,6 +299,15 @@
             text-decoration: underline;
         }
 
+        form .login-link a {
+            color: #556341;
+            text-decoration: none;
+        }
+
+        form .login-link a:hover {
+            text-decoration: underline;
+        }
+
         @media(max-width: 584px) {
             .container {
                 max-width: 100%;
@@ -353,8 +362,7 @@
                     </div>
                     <div class="input-box">
                         <span class="details">UserID</span>
-                        <input type="text" name="userID" placeholder="Enter your username"
-                            value="<?php echo $userID; ?>" required>
+                        <input type="text" name="userID" placeholder="Enter your username" required>
                     </div>
                     <div class="input-box">
                         <span class="details">Email</span>

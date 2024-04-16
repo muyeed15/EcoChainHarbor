@@ -12,13 +12,13 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     if ($row['type'] == 'Customer') {
-        header("Location: customer/shop.html");
+        header("Location: customer/index.html");
     }
     else if ($row['type'] == 'Vendor') {
         header("Location: customer/shop.html");
     }
     else if ($row['type'] == 'Farmer') {
-        header("Location: customer/shop.html");
+        header("Location: farmer/index.html");
     }
 
     exit();
