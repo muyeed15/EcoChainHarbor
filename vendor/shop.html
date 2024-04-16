@@ -8,40 +8,97 @@
     <meta content="" name="keywords">
     <meta content="" name="description">
 
-    <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap"
         rel="stylesheet">
-
-    <!-- Icon Font Stylesheet -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
     <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-
-
-    <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #addproductForm {
+            margin-top: 20px;
+        }
+
+        #addproductForm label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        #addproductForm input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        #addproductForm button[type="submit"] {
+            color: white;
+            background-color: #556341;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #addproductForm button[type="submit"]:hover {
+            background-color: #556341;
+        }
+
+        #addproductBtn {
+            color: white;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            margin-top: 4%;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
 </head>
 
 <body>
-
-    <!-- Spinner Start -->
     <div id="spinner"
         class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
         <div class="spinner-grow text-primary" role="status"></div>
     </div>
-    <!-- Spinner End -->
 
-
-    <!-- Navbar start -->
     <div class="container-fluid fixed-top">
         <div class="container topbar bg-primary d-none d-lg-block">
             <div class="d-flex justify-content-between">
@@ -69,17 +126,14 @@
                 </button>
                 <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                     <div class="navbar-nav mx-auto">
-                        <a href="index.html" class="nav-item nav-link">Home</a>
-                        <a href="shop.html" class="nav-item nav-link active">Shop</a>
-                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        <a href="index.html" class="nav-item nav-link">Dashboard</a>
+                        <a href="shop.html" class="nav-item nav-link active">Products</a>
                     </div>
                     <div class="collapse navbar-collapse bg-white justify-content-end" id="navbarCollapse">
                         <div class="d-flex m-3 me-0">
-                            <!-- Added My Account link -->
-                            <a href="#" class="me-4 my-auto">
+                            <a href="account.html" class="me-4 my-auto">
                                 <i class="fas fa-user fa-2x"></i>
                             </a>
-                            <!-- Added Logout option -->
                             <a href="../login.html" class="my-auto" id="logoutBtn">
                                 <i class="fas fa-sign-out-alt fa-2x"></i>
                             </a>
@@ -89,25 +143,60 @@
             </nav>
         </div>
     </div>
-    <!-- Navbar End -->
 
-    <!-- Fruits Shop Start-->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">Products</h1>
+    </div>
+
     <div class="container-fluid fruite py-5">
         <div class="container py-5">
-            <div class="row g-4">
+            <div class="row g-4 justify-content-left">
+                <div class="col-lg-12 text-center">
+                    <button class="btn btn-primary mt-3" id="addproductBtn">Add Product</button>
+                    <div id="addproductModal" class="modal">
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <h2>Add Product</h2>
+                            <form id="addproductForm" action="add_product.php" method="post">
+                                <label for="productID">Product ID:</label>
+                                <input type="text" id="productID" name="productID" required><br><br>
+                                <label for="productName">Product Name:</label>
+                                <input type="text" id="productName" name="productName" required><br><br>
+                                <label for="price">Price:</label>
+                                <input type="text" id="price" name="price" required><br><br>
+                                <label for="quantity">Quantity:</label>
+                                <input type="text" id="quantity" name="quantity" required><br><br>
+                                <label for="expiryDate">Expiry Date:</label>
+                                <input type="text" id="expiryDate" name="expiryDate" required><br><br>
+                                <label for="status">Status:</label>
+                                <input type="text" id="status" name="status" required><br><br>
+                                <button type="submit">Add</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <script>
+                        document.getElementById("addproductBtn").onclick = function () {
+                            document.getElementById("addproductModal").style.display = "block";
+                        }
+                        document.getElementsByClassName("close")[0].onclick = function () {
+                            document.getElementById("addproductModal").style.display = "none";
+                        }
+                        window.onclick = function (event) {
+                            if (event.target == document.getElementById("addproductModal")) {
+                                document.getElementById("addproductModal").style.display = "none";
+                            }
+                        }
+                    </script>
+                </div>
                 <div class="col-lg-12">
                     <div class="row g-4 justify-content-center" id="products">
-                        <!-- Fetched product items will be placed here -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Fruits Shop End-->
-
-
-    <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5">
         <div class="container py-5">
             <div class="row g-5">
@@ -154,18 +243,24 @@
             </div>
         </div>
     </div>
-    <!-- Footer End -->
 
-    <!-- JavaScript Libraries -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/lightbox/js/lightbox.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-
-    <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script>
+        fetch('shop.php')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('products').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error fetching products:', error);
+            });
+    </script>
 
 </body>
 

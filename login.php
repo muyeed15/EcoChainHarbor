@@ -15,7 +15,7 @@ if ($result->num_rows > 0) {
         header("Location: customer/index.html");
     }
     else if ($row['type'] == 'Vendor') {
-        header("Location: customer/shop.html");
+        header("Location: vendor/index.html");
     }
     else if ($row['type'] == 'Farmer') {
         header("Location: farmer/index.html");
